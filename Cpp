@@ -1,0 +1,52 @@
+// Manages student fee balance securely using encapsulation
+
+#include <iostream>
+using namespace std;
+
+class Student {
+private:
+    string studentName;
+    string admissionNumber;
+    float feeBalance;
+
+public:
+    // Reads student details
+    void inputStudentData() {
+        cout << "Enter student name: ";
+        cin >> studentName;
+        cout << "Enter admission number: ";
+        cin >> admissionNumber;
+        cout << "Enter initial fee balance: ";
+        cin >> feeBalance;
+    }
+
+    // Processes a payment
+    void makePayment() {
+        double payment;
+        cout << "Enter payment amount: ";
+        cin >> payment;
+
+        if (payment > feeBalance) {
+            cout << "Payment exceeds balance. Paying only the remaining balance." << endl;
+            feeBalance = 0;
+        } else {
+            feeBalance -= payment;
+        }
+    }
+
+    // Displays updated fee status
+    void displayStatus() {
+        cout << "\n--- Student Fee Status ---" << endl;
+        cout << "Name: " << studentName << endl;
+        cout << "Admission Number: " << admissionNumber << endl;
+        cout << "Remaining Fee Balance: " << feeBalance << endl;
+    }
+};
+
+int main() {
+    Student stu;
+    stu.inputStudentData();
+    stu.makePayment();
+    stu.displayStatus();
+    return 0;
+}
